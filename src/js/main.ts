@@ -4,13 +4,13 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 // for header
 
-const burger = document.querySelector(".burger");
-const menuBody = document.querySelector(".menu-wrap");
+const burger = document.querySelector(".burger")!;
+const menuBody = document.querySelector(".menu-wrap")!;
 const linkClose = document.querySelectorAll(".link-close");
-const overflow = document.querySelector(".overflow");
+const overflow = document.querySelector(".overflow")!;
 
 if (burger) {
-    burger.addEventListener("click", function (e) {
+    burger.addEventListener("click", function () {
         document.body.classList.toggle("body_lock");
         document.body.classList.toggle("active");
         if (burger.classList.contains('burger_active')) {
@@ -27,7 +27,7 @@ if (burger) {
 };
 
 if (overflow) {
-    overflow.addEventListener("click", function (e) {
+    overflow.addEventListener("click", function () {
         document.body.classList.toggle("body_lock");
         document.body.classList.toggle("active");
         if (burger.classList.contains('burger_active')) {
@@ -45,7 +45,7 @@ if (overflow) {
 
 if (linkClose.length) {
     for (var i = 0; i < linkClose.length; ++i) {
-        linkClose[i].addEventListener("click", function (e) {
+        linkClose[i].addEventListener("click", function () {
             document.body.classList.remove("body_lock");
             document.body.classList.remove("active");
             burger.classList.remove("burger_active");
@@ -59,7 +59,7 @@ if (linkClose.length) {
 
 // for swiper
 
-const swiper = new Swiper(".mainSlider", {
+new Swiper(".mainSlider", {
     slidesPerView: 3,
     spaceBetween: 40,
     slidesPerGroup: 1,
