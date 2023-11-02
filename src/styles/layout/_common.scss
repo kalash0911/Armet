@@ -464,14 +464,9 @@
         gap: 20px;
     }
 
-    .item {
+    .item-card {
         width: 47%;
-        border-radius: 30px;
-        background: $white;
-        padding: 30px;
-        transition: $anim_05;
         min-height: 320px;
-        cursor: pointer;
 
         @include media('<tablet'){
             width: 100%;
@@ -480,49 +475,84 @@
         @include media('<phone'){
             min-height: 0;
         }
+    }
+}
 
-        @include media('>desktop'){
+/* -------------------------industrial-section---------------- */
 
-            &:hover {
-                transform: scale(1.2);
-                box-shadow: 0px 0px 44px 0px rgba(34, 147, 255, 0.16);
+.industrial-section {
+    padding: 100px 0;
+
+    @include media('<phone'){
+        padding: 80px 0;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 60px;
+
+        @include media('<phone'){
+            margin-bottom: 24px;
+        }
+    }
+
+    .block {
+        position: relative;
+
+        @include media('<desktop'){
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+    }
+
+    .box {
+
+        @include media('<desktop'){
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 20px;
+        }
+    }
+
+    .item-card {
+        width: 45%;
+
+        @include media('<desktop'){
+            width: 100%;
+            padding: 0;
+        }
+
+        @include media('>=desktop'){
+            &:hover + .img-wrap{
+                opacity: 1;
                 z-index: 1;
             }
         }
     }
 
-    .icon {
-        display: grid;
-        place-items: center;
-        width: 86px;
-        height: 86px; 
-        border-radius: 50%;
-        background-color: $blueDFF;
-        margin-bottom: 30px;
+    .img-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45%;
+        height: 100%;
+        opacity: 0;
+        border-radius: 25px;
+        overflow: hidden;
+        transition: $anim_05;
+        z-index: -1;
 
-        @include media('<phone'){
-            width: 68px;
-            height: 68px;
-            margin-bottom: 20px;
+        @include media('<desktop'){
+            position: relative;
+            z-index: 1;
+            opacity: 1;
+            min-height: 400px;
+            width: 100%;
         }
-    }
 
-    .item-title {
-        color: $black1F;
-        font-family: $Calibre;
-        font-size: 20px;
-        font-weight: $semiBold;
-        line-height: 110%;
-        text-transform: uppercase;
-        margin-bottom: 8px;
-    }
-
-    .text {
-        font-size: 20px;
-        margin: 0;
-
-        @include media('<phone'){
-            font-size: 18px;
+        &.first {
+            opacity: 1;
         }
     }
 }
