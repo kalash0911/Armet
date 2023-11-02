@@ -15,7 +15,7 @@ html {
 }
 
 .blue-btn {
-    display: block;
+    display: inline-block;
     border-radius: 30px;
     border: 1px solid $blueFF;
     background-color: $blueFF;
@@ -32,6 +32,17 @@ html {
     &:hover {
         color: $blueFF;
         background-color: transparent;
+    }
+
+    &.dark {
+        color: $white;
+        border: 1px solid $black1F;
+        background-color: $black1F;
+
+        &:hover {
+            color: $black1F;
+            background-color: transparent;
+        }
     }
 }
 
