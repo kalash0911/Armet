@@ -13,7 +13,8 @@ h5,
 h6,
 .h6,
 .h {
-	font-weight: bold;
+	font-family: $Calibre;
+	font-weight: $semiBold;
 	margin: 0 0 0.5em;
 	color: $headings-color;
 }
@@ -49,10 +50,13 @@ h6,
 }
 
 p {
+	font-family: $Calibre;
+	font-weight: $medium;
 	margin: 0 0 1em;
 }
 
 a {
+	font-family: $Calibre;
 	color: $base-link-color;
 	text-decoration: none;
 	transition: color .3s ease;

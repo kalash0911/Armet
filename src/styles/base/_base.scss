@@ -1,0 +1,49 @@
+
+#wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.blue-btn {
+    display: block;
+    border-radius: 30px;
+    border: 1px solid $blueFF;
+    background-color: $blueFF;
+    padding: 18px 30px 12px 30px;
+    text-align: center;
+    color: $white;
+    font-family: $Calibre;
+    font-size: 20px;
+    font-weight: $semiBold;
+    line-height: 110%;
+    text-transform: uppercase;
+    transition: $anim_03;
+
+    &:hover {
+        color: $blueFF;
+        background-color: transparent;
+    }
+}
+
+.text {
+    color: $gray98;
+    font-family: $Calibre;
+    font-size: 22px;
+    font-weight: $regular;
+    line-height: 120%;
+
+    @include media('<phone'){
+        font-size: 20px;
+    }
+
+    span {
+        color: $white;
+    }
+}
