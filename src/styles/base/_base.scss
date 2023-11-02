@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 
 #wrapper {
     position: relative;
@@ -29,6 +32,23 @@
     &:hover {
         color: $blueFF;
         background-color: transparent;
+    }
+}
+
+.title {
+    color: $black1F;
+    font-family: $Calibre;
+    font-size: 52px;
+    font-weight: $semiBold;
+    line-height: 110%;
+    text-transform: uppercase;
+
+    @include media('<tablet'){
+        font-size: 36px;
+    }
+
+    span {
+        color: $blueFF;
     }
 }
 
