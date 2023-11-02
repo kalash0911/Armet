@@ -10,7 +10,7 @@ htmlFiles.forEach((file) => {
 });
 
 export default defineConfig({
-  base: '/armet',
+  base: '/Armet',
   root: 'src',
   publicDir: '../public',
   plugins: [
