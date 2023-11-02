@@ -1,4 +1,4 @@
-/* ---------------------------main-section------------------ */
+/* ---------------------------main-section------------------- */
 
 .main-section {
     position: relative;
@@ -299,10 +299,6 @@
 
     .title {
         margin-bottom: 36px;
-
-        @include media('<phone'){
-           font-size: 42px;
-        }
     }
 
     .blue-btn {
@@ -325,7 +321,7 @@
     .item {
         padding: 26px;
         border-radius: 26px;
-        background: #F9F9F9;
+        background: $whiteF9;
         margin-bottom: 16px;
         text-align: left;
 
@@ -390,7 +386,7 @@
         display: grid;
         place-items: center;
         border-radius: 50%;
-        background-color: #F9F9F9;
+        background-color: $whiteF9;
         z-index: 2;
         cursor: pointer;
         transition: $anim_03;
@@ -445,4 +441,181 @@
     .swiper-pagination-bullet-active {
         background-color: $blueFF;
     }
+}
+
+/* -------------------------experience-section---------------- */
+
+.experience-section {
+    padding: 100px 0;
+    background-color: $whiteF9;
+
+    @include media('<phone'){
+        padding:80px 0;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 60px;  
+    }
+
+    .block {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .item-card {
+        width: 47%;
+        min-height: 320px;
+
+        @include media('<tablet'){
+            width: 100%;
+        }
+
+        @include media('<phone'){
+            min-height: 0;
+        }
+    }
+}
+
+/* -------------------------industrial-section---------------- */
+
+.industrial-section {
+    padding: 100px 0;
+
+    @include media('<phone'){
+        padding: 80px 0;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 60px;
+
+        @include media('<phone'){
+            margin-bottom: 24px;
+        }
+    }
+
+    .block {
+        position: relative;
+
+        @include media('<desktop'){
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+    }
+
+    .box {
+
+        @include media('<desktop'){
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 20px;
+        }
+    }
+
+    .item-card {
+        width: 45%;
+
+        @include media('<desktop'){
+            width: 100%;
+            padding: 0;
+        }
+
+        @include media('>=desktop'){
+            &:hover + .img-wrap{
+                opacity: 1;
+                z-index: 1;
+            }
+        }
+    }
+
+    .img-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45%;
+        height: 100%;
+        opacity: 0;
+        border-radius: 25px;
+        overflow: hidden;
+        transition: $anim_05;
+        z-index: -1;
+
+        @include media('<desktop'){
+            position: relative;
+            z-index: 1;
+            opacity: 1;
+            min-height: 400px;
+            width: 100%;
+        }
+
+        &.first {
+            opacity: 1;
+        }
+    }
+}
+
+/* ----------------------------ready-section------------------ */
+
+.ready-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 0;
+    overflow: hidden;
+
+    @include media('<phone'){
+        border-radius: 40px 40px 0px 0px;
+    }
+
+    &::before {
+        content:'';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(34, 147, 255, 0.20) 0%, rgba(34, 147, 255, 0.20) 100%);
+        z-index: -1;
+    }
+
+    .bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    .title {
+        color: $white;
+        font-size: 82px;
+        margin-bottom: 16px;
+
+        @include media('<desktop'){
+            font-size: 62px;
+        }
+
+        @include media('<tablet'){
+            font-size: 48px;
+        }
+    }
+
+    .text {
+        color: $white;
+        font-size: 20px;
+        margin-bottom: 45px;
+
+        @include media('<phone'){
+            font-size: 18px;
+        }
+    }
+
 }

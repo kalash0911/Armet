@@ -1,1 +1,308 @@
-#header {}
+.overflow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    transition: $anim_03;
+}
+
+.overflow_active {
+    z-index: 0;
+    visibility: visible;
+    opacity: 1;
+}
+
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 32px 0;
+    z-index: 5;
+
+    @include media('<tablet'){
+        padding: 16px 0;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        z-index: 2;
+
+        svg {
+            fill: $white;
+        }
+    }
+
+    .logo-text {
+        color: $white;
+        font-family: $Calibre;
+        font-size: 28px;
+        font-weight: $semiBold;
+        text-transform: uppercase;
+        margin: 13px 0 0 0;
+    }
+
+    .menu-wrap {
+        display: flex;
+        align-items: center;
+        gap: 148px;
+        margin-top: 12px;
+
+        @include media('<widescreen'){
+            gap: 30px;
+        }
+
+        @include media('<tablet'){
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 40%;
+            height: 100vh;
+            min-height: 100vh;
+            padding: 140px 20px 100px 20px;
+            transition: $anim_05;
+            background-color: $black1F;
+            overflow: auto;
+            margin: 0;
+        }
+
+        @include media('<tablet'){
+            width: 60%;
+        }
+
+        @include media('<phone'){
+            width: 100%;
+        }
+
+        .active & {
+            right: 0;
+        }
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        @include media('<tablet'){
+            align-items: flex-start;
+            flex-direction: column;
+            width: 100%;
+            gap: 0;
+        }
+    }
+
+    .menu-item {
+
+        @include media('<tablet'){
+            width: 100%;
+            padding: 24px 0 20px 0;
+            border-bottom: 1px solid rgba( $white, .2);
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    
+    .link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: $white;
+        text-align: center;
+        font-family: $Calibre;
+        font-size: 16px;
+        font-weight: $regular;
+        line-height: 112%;
+        text-transform: uppercase;
+        transition: $anim_03;
+
+        @include media('<tablet'){
+            font-size: 24px;
+        }
+
+        &:hover {
+            color: $blueFF;
+
+            svg {
+                stroke: $blueFF;
+                transform: rotate(180deg);
+            }
+        }
+
+        svg {
+            stroke: $white;
+            transition: $anim_03;
+            margin-bottom: 8px;
+        }
+    }
+}
+
+/* ---------------burger */
+
+.burger{
+    display: none;
+    position: relative;
+    width: 24px;
+    height: 15px;
+    z-index: 1;
+    border: none;
+    outline: none;
+    background: none;
+
+    @include media('<tablet'){
+        display: block;
+    }
+
+    span{
+        position: absolute;
+        top: 6px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $white;
+        border-radius: 10px;
+        transition: all .7s ease 0s;
+    }
+    
+    &::before, &::after{
+        content:'';
+        position: absolute;
+        right: 0;
+        height: 2px;
+        width: 100%;
+        background-color: $white;
+        border-radius: 10px;
+    }
+
+    &::before{
+        top: 0;
+    }
+
+    &::after{
+        bottom: 0;
+    }
+}
+
+.burger_active{
+
+    span{
+        opacity: 0;
+    }
+    
+    &::before, &::after{
+        animation-duration: .7s;
+        animation-fill-mode: forwards;
+    }
+    
+    &::before{
+        animation-name: burger1;
+    }
+
+    &::after{
+        animation-name: burger2;
+    }
+
+   @keyframes burger1 {
+        0%{
+            top: 0px;
+        }
+
+        40%{
+            transform: rotate(0deg);
+            top: 6px;
+        }
+
+        100%{
+            transform: rotate(45deg);
+            top: 6px;
+        }
+    }
+    
+    @keyframes burger2 {
+        0%{
+            bottom: 0;
+        }
+
+        40%{
+            transform: rotate(0deg);
+            bottom: 7px;
+            width: 100%;
+        }
+
+        100%{
+            transform: rotate(-45deg);
+            bottom: 7px;
+            width: 100%;
+        }
+    }
+}
+
+.burger_finish{
+
+    &::before, &::after{
+        animation-duration: .7s;
+        animation-fill-mode: forwards;
+    }
+
+    &::before{
+        animation-name: burger3;
+    }
+
+    &::after{
+        animation-name: burger4;
+    }
+
+    @keyframes burger3 {
+        0%{
+            transform: rotate(45deg);
+            top: 6px;
+        }
+
+        40%{
+            transform: rotate(0deg);
+            top: 6px;
+        }
+
+        100%{
+            top: 0;
+        }
+    }
+    
+    @keyframes burger4 {
+        0%{
+            transform: rotate(-45deg);
+            bottom: 6px;
+            width: 100%;
+        }
+
+        40%{
+            transform: rotate(0deg);
+            bottom: 6px;
+            width: 100%;
+        }
+
+        100%{
+            bottom: 0;
+        }
+    }
+}

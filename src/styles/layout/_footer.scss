@@ -1,1 +1,146 @@
-#footer {}
+#footer {
+    padding: 100px 0;
+    background-color: $black1F;
+
+    @include media('<phone'){
+        padding: 80px 0;
+    }
+
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 50px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba($white , .2);
+
+        @include media('<phone'){
+            flex-direction: column;
+        }
+    }
+
+    .menu {
+        display: flex;
+        gap: 24px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        @include media('<phone'){
+           flex-direction: column;
+        }
+    }
+
+    .link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: $white;
+        font-family: $Calibre;
+        font-size: 16px;
+        font-weight: $regular;
+        line-height: 112%;
+        text-transform: uppercase;
+        transition: $anim_03;
+
+        @include media('<phone'){
+            justify-content: center;
+        }
+
+        &:hover {
+            color: $blueFF;
+
+            svg {
+                stroke: $blueFF;
+                transform: rotate(180deg);
+            }
+        }
+
+        svg {
+            stroke: $white;
+            margin-bottom: 8px;
+            transition: $anim_03;
+        }
+    }
+
+    .socials {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+    }
+
+    .soc-link {
+
+        &:hover {
+
+            svg {
+                fill: $blueFF;
+            }
+        }
+
+
+        svg {
+            fill: $white;
+            transition: $anim_03;
+        }
+    }
+
+    .bot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 50px;
+        padding-top: 30px;
+
+        @include media('<phone'){
+            flex-direction: column;
+        }
+    }
+    
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        z-index: 2;
+
+        @include media('<phone'){
+            display: none;
+        }
+
+        svg {
+            fill: $white;
+        }
+
+        &.mob {
+            display: none;
+
+            @include media('<phone'){
+                display: flex;
+            } 
+        }
+    }
+
+    .logo-text {
+        color: $white;
+        font-family: $Calibre;
+        font-size: 28px;
+        font-weight: $semiBold;
+        text-transform: uppercase;
+        margin: 13px 0 0 0;
+    }
+    
+    .copyright {
+        color: $white;
+        font-family: $Calibre;
+        font-size: 14px;
+        font-weight: $semiBold;
+        line-height: 110%;
+        text-transform: uppercase;
+        opacity: .8;
+        margin: 0;
+    }
+
+}
