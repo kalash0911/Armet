@@ -66,7 +66,7 @@ export const resetActiveElementObjectColor = () => {
   }
 }
 
-const loadObj = (scene: any, objPath: string, containerEl: any) => {
+const loadObj = (scene: any, camera: any, renderer: any, objPath: string, containerEl: any) => {
   const objLoader = new OBJLoader();
   objLoader.load(
     objPath,
@@ -75,6 +75,15 @@ const loadObj = (scene: any, objPath: string, containerEl: any) => {
       scene.add(object);
       resetObjectColor(object);
       setActiveElementObjectColor();
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        object.rotation.y -= 0.01;
+
+        renderer.render(scene, camera);
+      }
+      animate();
     },
     () => {
     },
@@ -94,14 +103,17 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   const camera = setCamera();
   addLight(scene);
 
-  loadObj(scene, modelUrl!, containerEl);
 
   const renderer = new THREE.WebGLRenderer({ alpha: true });
+
+  loadObj(scene, camera, renderer, modelUrl!, containerEl);
+
   renderer.setClearColor( 0x000000, 0 ); // the default
   renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth);
   containerEl.appendChild(renderer.domElement);
 
   const controls = setControls(camera, renderer);
+  controls.enableZoom = false;
 
   window.addEventListener('resize', onWindowResize, false);
   new ResizeObserver(onWindowResize).observe(containerEl)
