@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       const animationNumber = index + 1;
       return {
         animationName: `icon_${animationNumber}`,
-        jsonPath: `../../public/files/icon_${animationNumber}.json`,
+        jsonPath: new URL(
+          `../../public/files/icon_${animationNumber}.json`,
+          import.meta.url,
+        ),
         elementId: `icon_${animationNumber}`,
       };
     },
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderer: 'svg',
         loop: true,
         autoplay: false,
-        path: animationData.jsonPath,
+        path: animationData.jsonPath.pathname,
         name: animationData.animationName,
       });
 
