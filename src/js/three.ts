@@ -121,7 +121,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   const scene = createScene();
 
   const hdrUrl =
-    'files/machine_shop_03_1k.hdr';
+    'files/machine_shop_BW.hdr';
   new RGBELoader().load(hdrUrl, (texture: any) => {
     const gen = new THREE.PMREMGenerator(renderer);
     const envMap = gen.fromEquirectangular(texture).texture;
