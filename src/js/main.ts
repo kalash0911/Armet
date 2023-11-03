@@ -5,7 +5,7 @@ import { swiper } from './swiper.ts';
 import {
   initTreeJsModels,
   setActiveElementObjectColor,
-  resetActiveElementObjectColor
+  resetActiveElementObjectColor,
 } from './three';
 import { burgerMenu } from './burger-menu';
 

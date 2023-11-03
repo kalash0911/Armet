@@ -3,70 +3,80 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 // @ts-ignore
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+// @ts-ignore
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 const createScene = () => {
   const scene = new THREE.Scene();
   return scene;
-}
+};
 
 const addLight = (scene: any) => {
   const light = new THREE.PointLight(0xffffff, 1000);
   light.position.set(2.5, 7.5, 15);
   scene.add(light);
-}
+};
 
 const setCamera = () => {
   const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000
+    1000,
   );
   camera.position.z = 4;
   return camera;
-}
+};
 
 const setControls = (camera: any, renderer: any) => {
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   return controls;
-}
+};
 
 export const setActiveObjectColor = (object: any) => {
-  object.traverse( (obj: any) => {
-    if (obj.isMesh && obj.material.color){
-      obj.material.color.set(0x2293FF);
+  object.traverse((obj: any) => {
+    if (obj.isMesh && obj.material.color) {
+      obj.material = new THREE.MeshStandardMaterial();
+      obj.material.color.set(0x2293ff);
     }
-  } );
-}
+  });
+};
 
 export const resetObjectColor = (object: any) => {
   object.traverse((obj: any) => {
-    if (obj.isMesh && obj.material.color){
+    if (obj.isMesh && obj.material.color) {
+      obj.material = new THREE.MeshStandardMaterial();
       obj.material.color.set(0xe8e8e8);
     }
-  } );
-}
+  });
+};
 
 export const setActiveElementObjectColor = () => {
   const activeEl = document.querySelector('.swiper-slide-active .test-item');
   // @ts-ignore
-  if (activeEl && activeEl._loadedModelObject ) {
+  if (activeEl && activeEl._loadedModelObject) {
     // @ts-ignore
     setActiveObjectColor(activeEl._loadedModelObject);
   }
-}
+};
 
 export const resetActiveElementObjectColor = () => {
   const activeEl = document.querySelector('.swiper-slide-active .test-item');
   // @ts-ignore
-  if (activeEl && activeEl._loadedModelObject ) {
+  if (activeEl && activeEl._loadedModelObject) {
     // @ts-ignore
     resetObjectColor(activeEl._loadedModelObject);
   }
-}
+};
 
-const loadObj = (scene: any, camera: any, renderer: any, objPath: string, containerEl: any) => {
+const loadObj = (
+  scene: any,
+  camera: any,
+  renderer: any,
+  objPath: string,
+  containerEl: any,
+) => {
   const objLoader = new OBJLoader();
   objLoader.load(
     objPath,
@@ -85,30 +95,40 @@ const loadObj = (scene: any, camera: any, renderer: any, objPath: string, contai
       }
       animate();
     },
-    () => {
-    },
+    () => {},
     (error: any) => {
-      console.log(error)
-    }
+      console.log(error);
+    },
   );
-}
+};
 
 const renderModel = (props: { containerEl: HTMLElement }) => {
   const { containerEl } = props;
   const modelUrl = containerEl.dataset.modelurl;
 
   const scene = createScene();
-  // @ts-ignore
-  scene.background = '#F9F9F9';
+
+  const hdrUrl =
+    'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/abandoned_greenhouse_1k.hdr';
+  new RGBELoader().load(hdrUrl, (texture: any) => {
+    const gen = new THREE.PMREMGenerator(renderer);
+    const envMap = gen.fromEquirectangular(texture).texture;
+    scene.environment = envMap;
+    // @ts-ignore
+    scene.background = '#F9F9F9';
+
+    texture.dispose();
+    gen.dispose();
+  });
+
   const camera = setCamera();
   addLight(scene);
-
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
 
   loadObj(scene, camera, renderer, modelUrl!, containerEl);
 
-  renderer.setClearColor( 0x000000, 0 ); // the default
+  renderer.setClearColor(0x000000, 0); // the default
   renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth);
   containerEl.appendChild(renderer.domElement);
 
@@ -116,7 +136,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   controls.enableZoom = false;
 
   window.addEventListener('resize', onWindowResize, false);
-  new ResizeObserver(onWindowResize).observe(containerEl)
+  new ResizeObserver(onWindowResize).observe(containerEl);
 
   function render() {
     renderer.render(scene, camera);
@@ -138,13 +158,13 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   }
 
   animate();
-}
+};
 
 export const initTreeJsModels = () => {
   const items = document.getElementsByClassName('test-item');
   [...items].forEach((item: Element) => {
     renderModel({
-      containerEl: item as HTMLElement
-    })
+      containerEl: item as HTMLElement,
+    });
   });
-}
+};
