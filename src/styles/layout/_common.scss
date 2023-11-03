@@ -15,7 +15,7 @@
     }
 
     &::before {
-        content:'';
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -53,8 +53,7 @@
         text-transform: uppercase;
         margin-bottom: 6px;
 
-        
-        @include media('<tablet'){
+        @include media('<tablet') {
             font-size: 28px;
         }
 
@@ -68,7 +67,7 @@
         font-size: 20px;
         margin-bottom: 30px;
 
-        @include media('<tablet'){
+        @include media('<tablet') {
             font-size: 18px;
         }
     }
@@ -83,13 +82,13 @@
         flex-direction: column;
         gap: 20px;
 
-        @include media('<tablet'){
+        @include media('<tablet') {
             display: none;
         }
 
         &:hover {
 
-            .arrow-wrap  {
+            .arrow-wrap {
                 background-color: $blueFF;
                 transform: translateY(10px);
 
@@ -147,7 +146,7 @@
     flex-direction: column;
     justify-content: center;
 
-    @include media('<tablet_s'){
+    @include media('<tablet_s') {
         padding: 80px 0;
         justify-content: start;
         min-height: 800px;
@@ -162,13 +161,13 @@
         z-index: 1;
         transition: all 2s ease-out 0s;
 
-        @include media('<tablet_s'){
+        @include media('<tablet_s') {
             transform: translateX(-50%) scale(2);
             top: 30%;
             max-width: 410px;
         }
 
-        @include media('<phone'){
+        @include media('<phone') {
             max-width: 100%;
             transition: all 1s ease-out 0s;
         }
@@ -183,15 +182,15 @@
         opacity: 0;
         transition: opacity .7s ease 1s;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             max-width: 450px;
         }
 
-        @include media('<tablet'){
+        @include media('<tablet') {
             max-width: 350px;
         }
 
-        @include media('<phone'){
+        @include media('<phone') {
             transition: opacity .7s ease 0s;
         }
 
@@ -208,11 +207,11 @@
         color: $white;
         margin-bottom: 8px;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             font-size: 44px;
         }
 
-        @include media('<tablet'){
+        @include media('<tablet') {
             font-size: 36px;
         }
     }
@@ -224,16 +223,16 @@
         text-transform: uppercase;
         margin: 0;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             font-size: 24px;
         }
 
-        @include media('<tablet'){
+        @include media('<tablet') {
             font-size: 18px;
         }
     }
 
-    &.step2{
+    &.step2 {
 
         .planet {
             position: absolute;
@@ -242,21 +241,21 @@
             transform: translate(-50%, -50%) rotate(-90deg);
             z-index: 1;
 
-            @include media('<tablet_s'){
+            @include media('<tablet_s') {
                 transform: translate(-50%, -50%) rotate(-90deg) scale(2);
                 top: 80%;
             }
         }
 
         .text-box {
-    
+
             &.left {
                 opacity: 1;
             }
         }
     }
 
-    &.step3{
+    &.step3 {
 
         .planet {
             position: absolute;
@@ -265,14 +264,14 @@
             transform: translate(-50%, -50%) rotate(-270deg);
             z-index: 1;
 
-            @include media('<tablet_s'){
+            @include media('<tablet_s') {
                 transform: translate(-50%, -50%) rotate(-270deg) scale(2);
                 top: 80%;
             }
         }
 
         .text-box {
-    
+
             &.left {
                 opacity: 0;
             }
@@ -308,7 +307,7 @@
     .mainSlider {
         margin-bottom: 45px;
 
-        @include media('<1350px'){
+        @include media('<1350px') {
             margin-bottom: 25px;
         }
     }
@@ -325,7 +324,7 @@
         margin-bottom: 16px;
         text-align: left;
 
-        @include media('<phone'){
+        @include media('<phone') {
             padding: 20px;
         }
     }
@@ -342,7 +341,7 @@
         line-height: 1;
         margin-bottom: 20px;
 
-        @include media('<phone'){
+        @include media('<phone') {
             font-size: 14px;
         }
     }
@@ -361,7 +360,7 @@
         align-items: center;
         min-height: 550px;
 
-        @include media('<phone'){
+        @include media('<phone') {
             min-height: 400px;
         }
     }
@@ -391,8 +390,8 @@
         cursor: pointer;
         transition: $anim_03;
 
-        @include media('<1350px'){
-           display: none;
+        @include media('<1350px') {
+            display: none;
         }
 
         &:hover {
@@ -426,7 +425,7 @@
         gap: 8px;
         margin-bottom: 40px;
 
-        @include media('<1350px'){
+        @include media('<1350px') {
             display: flex;
         }
     }
@@ -449,13 +448,13 @@
     padding: 100px 0;
     background-color: $whiteF9;
 
-    @include media('<phone'){
-        padding:80px 0;
+    @include media('<phone') {
+        padding: 80px 0;
     }
 
     .title {
         text-align: center;
-        margin-bottom: 60px;  
+        margin-bottom: 60px;
     }
 
     .block {
@@ -468,11 +467,11 @@
         width: 47%;
         min-height: 320px;
 
-        @include media('<tablet'){
+        @include media('<tablet') {
             width: 100%;
         }
 
-        @include media('<phone'){
+        @include media('<phone') {
             min-height: 0;
         }
     }
@@ -483,7 +482,7 @@
 .industrial-section {
     padding: 100px 0;
 
-    @include media('<phone'){
+    @include media('<phone') {
         padding: 80px 0;
     }
 
@@ -491,7 +490,7 @@
         text-align: center;
         margin-bottom: 60px;
 
-        @include media('<phone'){
+        @include media('<phone') {
             margin-bottom: 24px;
         }
     }
@@ -499,7 +498,7 @@
     .block {
         position: relative;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             display: flex;
             flex-direction: column;
             gap: 24px;
@@ -508,7 +507,7 @@
 
     .box {
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             display: flex;
             flex-direction: column-reverse;
             gap: 20px;
@@ -518,13 +517,13 @@
     .item-card {
         width: 45%;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             width: 100%;
             padding: 0;
         }
 
-        @include media('>=desktop'){
-            &:hover + .img-wrap{
+        @include media('>=desktop') {
+            &:hover+.img-wrap {
                 opacity: 1;
                 z-index: 1;
             }
@@ -543,7 +542,7 @@
         transition: $anim_05;
         z-index: -1;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             position: relative;
             z-index: 1;
             opacity: 1;
@@ -569,12 +568,12 @@
     padding: 80px 0;
     overflow: hidden;
 
-    @include media('<phone'){
+    @include media('<phone') {
         border-radius: 40px 40px 0px 0px;
     }
 
     &::before {
-        content:'';
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -584,7 +583,7 @@
         z-index: -1;
     }
 
-    .bg{
+    .bg {
         position: absolute;
         top: 0;
         left: 0;
@@ -599,11 +598,11 @@
         font-size: 82px;
         margin-bottom: 16px;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
             font-size: 62px;
         }
 
-        @include media('<tablet'){
+        @include media('<tablet') {
             font-size: 48px;
         }
     }
@@ -613,7 +612,7 @@
         font-size: 20px;
         margin-bottom: 45px;
 
-        @include media('<phone'){
+        @include media('<phone') {
             font-size: 18px;
         }
     }

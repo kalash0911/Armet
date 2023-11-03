@@ -1,15 +1,13 @@
-// body {
-//     overflow: hidden;
-// }
+body {
+    &.locked {
+        overflow: hidden;
+    }
+}
 
-// .fp-section {
-//     height: 100vh;
-// }
+.fp-section {
+    height: 100vh;
+}
 
-// .d-none {
-//     display: none !important;
-// }
-
-// .swiperFullpage {
-//     height: 100vh;
-// }
+.d-none {
+    display: none !important;
+}
