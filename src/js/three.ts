@@ -66,7 +66,7 @@ export const resetActiveElementObjectColor = () => {
   }
 }
 
-const loadObj = (scene: any, camera: any, renderer: any, objPath: string, containerEl: any) => {
+const loadObj = (scene: any, objPath: string, containerEl: any) => {
   const objLoader = new OBJLoader();
   objLoader.load(
     objPath,
@@ -106,7 +106,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-  loadObj(scene, camera, renderer, modelUrl!, containerEl);
+  loadObj(scene, modelUrl!, containerEl);
 
   renderer.setClearColor( 0x000000, 0 ); // the default
   renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth);
