@@ -153,6 +153,20 @@
         height: auto;
     }
 
+    $animSpeed: 10s;
+    $animDuration: .5s;
+
+    &.animation {
+        .planet {
+            animation-play-state: running;
+        }
+
+        .left,
+        .right {
+            animation-play-state: running;
+        }
+    }
+
     .planet {
         position: absolute;
         left: 50%;
@@ -160,6 +174,16 @@
         top: 0;
         z-index: 1;
         transition: all 2s ease-out 0s;
+        animation-name: planet;
+        animation-duration: $animSpeed;
+        animation-delay: $animDuration;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+
+        @include media('<tablet_s') {
+            animation-name: planetTab;
+        }
 
         @include media('<tablet_s') {
             transform: translateX(-50%) scale(2);
@@ -232,36 +256,20 @@
         }
     }
 
-    $animSpeed: 10s;
-    $animDuration: .5s;
+    .left {
+        animation-play-state: paused;
+        animation-name: opacityLeft;
+        animation-duration: $animSpeed;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+    }
 
-    &.animation {
-
-        .planet {
-            animation-name: planet;
-            animation-duration: $animSpeed;
-            animation-delay: $animDuration;
-            animation-timing-function: ease;
-            animation-fill-mode: forwards;
-
-            @include media('<tablet_s') {
-                animation-name: planetTab;
-            }
-        }
-
-        .left {
-            animation-name: opacityLeft;
-            animation-duration: $animSpeed;
-            animation-timing-function: ease;
-            animation-fill-mode: forwards;
-        }
-
-        .right {
-            animation-name: opacityRight;
-            animation-duration: $animSpeed;
-            animation-timing-function: ease;
-            animation-fill-mode: forwards;
-        }
+    .right {
+        animation-play-state: paused;
+        animation-name: opacityRight;
+        animation-duration: $animSpeed;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
     }
 
     @keyframes planet {
@@ -269,17 +277,20 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-        } 
+        }
+
         30% {
             top: 50%;
             left: 100%;
             transform: translate(-50%, -50%) rotate(-90deg);
         }
+
         70% {
             top: 50%;
             left: 100%;
             transform: translate(-50%, -50%) rotate(-90deg);
         }
+
         100% {
             top: 50%;
             left: 0;
@@ -292,15 +303,18 @@
             top: 30%;
             transform: translateX(-50%) scale(2);
             max-width: 410px;
-        } 
+        }
+
         30% {
             top: 80%;
             transform: translate(-50%, -50%) rotate(-90deg) scale(2);
         }
+
         70% {
             top: 80%;
             transform: translate(-50%, -50%) rotate(-90deg) scale(2);
         }
+
         100% {
             top: 80%;
             transform: translate(-50%, -50%) rotate(-270deg) scale(2);
@@ -310,16 +324,20 @@
     @keyframes opacityLeft {
         0% {
             opacity: 0;
-        } 
+        }
+
         10% {
             opacity: 0;
         }
-        20%{
+
+        20% {
             opacity: 1;
         }
+
         70% {
             opacity: 1;
         }
+
         100% {
             opacity: 0;
         }
@@ -328,10 +346,12 @@
     @keyframes opacityRight {
         0% {
             opacity: 0;
-        } 
+        }
+
         90% {
             opacity: 0;
         }
+
         100% {
             opacity: 1;
         }
