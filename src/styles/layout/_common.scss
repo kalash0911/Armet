@@ -232,54 +232,6 @@
         }
     }
 
-    &.step2 {
-
-        .planet {
-            left: 100%;
-            top: 50%;
-            transform: translate(-50%, -50%) rotate(-90deg);
-            z-index: 1;
-
-            @include media('<tablet_s') {
-                transform: translate(-50%, -50%) rotate(-90deg) scale(2);
-                top: 80%;
-            }
-        }
-
-        .text-box {
-
-            &.left {
-                opacity: 1;
-            }
-        }
-    }
-
-    &.step3 {
-
-        .planet {
-            left: 0;
-            top: 50%;
-            transform: translate(-50%, -50%) rotate(-270deg);
-            z-index: 1;
-
-            @include media('<tablet_s') {
-                transform: translate(-50%, -50%) rotate(-270deg) scale(2);
-                top: 80%;
-            }
-        }
-
-        .text-box {
-
-            &.left {
-                opacity: 0;
-            }
-
-            &.right {
-                opacity: 1;
-            }
-        }
-    }
-
     $animSpeed: 10s;
     $animDuration: .5s;
 
