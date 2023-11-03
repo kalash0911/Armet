@@ -4,6 +4,8 @@ export const fullpagejs = () => {
   let isEnded = false;
   let direction = '';
   let isEnteringBack = false;
+  let stepAnimCount = 1;
+  const MAX_STEPS = 3;
 
   const sections = Array.from(document.querySelectorAll('.fpsec'));
   const onEnter = new Event('onEnter');
@@ -48,13 +50,30 @@ export const fullpagejs = () => {
       curSectionInd++;
       sections[curSectionInd].scrollIntoView({ behavior: 'smooth' });
       handleIsScrolling();
+    } else if (
+      curSectionInd === sections.length - 1 &&
+      stepAnimCount < MAX_STEPS
+    ) {
+      stepAnimCount++;
+      sections[curSectionInd].classList.add(`step${stepAnimCount}`);
+      isScrolling = true;
+      handleIsScrolling();
     } else {
       !isEnded && dispatchEvent(onLeave);
     }
   }
 
   function scrollToPreviousSection() {
-    if (curSectionInd > 0 && !isEnded) {
+    if (
+      curSectionInd === sections.length - 1 &&
+      !isEnded &&
+      stepAnimCount !== 1
+    ) {
+      sections[curSectionInd].classList.remove(`step${stepAnimCount}`);
+      stepAnimCount--;
+      isScrolling = true;
+      handleIsScrolling();
+    } else if (curSectionInd > 0 && !isEnded) {
       isScrolling = true;
       curSectionInd--;
       sections[curSectionInd].scrollIntoView({ behavior: 'smooth' });
