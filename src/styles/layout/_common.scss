@@ -518,7 +518,7 @@
         transition: $anim_03;
 
         @include media('<1350px') {
-            display: none;
+            background-color: $blueFF;
         }
 
         &:hover {
@@ -533,17 +533,27 @@
         svg {
             fill: $black1F;
             transition: $anim_03;
+
+            @include media('<1350px') {
+                fill: $white;
+            }
         }
     }
 
     .prev {
         left: -40px;
 
+        @include media('<1350px') {
+            left: 10px;
+        }
     }
 
     .next {
         right: -40px;
 
+        @include media('<1350px') {
+            right: 10px;
+        }
     }
 
     .pagination {
