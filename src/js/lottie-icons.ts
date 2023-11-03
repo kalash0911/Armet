@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const animationNumber = index + 1;
       return {
         animationName: `icon_${animationNumber}`,
-        jsonPath: `../files/icon_${animationNumber}.json`,
+        jsonPath: `../../public/files/icon_${animationNumber}.json`,
         elementId: `icon_${animationNumber}`,
       };
     },
