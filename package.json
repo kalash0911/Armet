@@ -24,6 +24,7 @@
   "dependencies": {
     "@lottiefiles/lottie-interactivity": "^1.6.2",
     "lottie-web": "^5.12.2",
-    "swiper": "^11.0.3"
+    "swiper": "^11.0.3",
+    "three": "^0.158.0"
   }
 }
