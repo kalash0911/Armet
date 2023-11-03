@@ -39,6 +39,8 @@ export const setActiveObjectColor = (object: any) => {
     if (obj.isMesh && obj.material.color) {
       obj.material = new THREE.MeshStandardMaterial();
       obj.material.color.set(0x2293ff);
+      obj.material.roughness = 0.3;
+      obj.material.specular = 0.6;
     }
   });
 };
@@ -48,6 +50,8 @@ export const resetObjectColor = (object: any) => {
     if (obj.isMesh && obj.material.color) {
       obj.material = new THREE.MeshStandardMaterial();
       obj.material.color.set(0xb8b8b8);
+      obj.material.roughness = 0.3;
+      obj.material.specular = 0.6;
     }
   });
 };
