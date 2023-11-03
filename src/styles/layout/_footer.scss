@@ -112,6 +112,10 @@
 
         svg {
             fill: $white;
+
+            @include media('<phone'){
+                width: 40px;
+            }
         }
 
         &.mob {
@@ -130,6 +134,11 @@
         font-weight: $semiBold;
         text-transform: uppercase;
         margin: 13px 0 0 0;
+
+        @include media('<phone'){
+            font-size: 23px;
+            margin: 8px 0 0 0;
+        }
     }
     
     .copyright {

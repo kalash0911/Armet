@@ -32,6 +32,10 @@
         flex-direction: column;
         justify-content: center;
         padding: 100px 20px 200px 20px;
+
+        @include media('<phone'){
+            padding: 100px 20px;
+        }
     }
 
     .main-title {
@@ -473,6 +477,10 @@
         }
     }
 
+    .test-item {
+        cursor: grab;
+    }
+
     .name {
         color: $black1F;
         font-family: $Calibre;
@@ -487,8 +495,8 @@
         align-items: center;
         min-height: 550px;
 
-        @include media('<phone') {
-            min-height: 400px;
+        @include media('<380px') {
+            min-height: 450px;
         }
     }
 
@@ -504,6 +512,33 @@
 
     .prev,
     .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 80%;
+        width: 30%;
+        z-index: 1;
+        cursor: pointer;
+
+        @include media('<desktop') {
+            height: 55%;
+            width: 30%;
+        }
+
+        @include media('<phone') {
+            width: 15%;
+        }
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+
+    .arrow {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -538,23 +573,24 @@
                 fill: $white;
             }
         }
-    }
 
-    .prev {
-        left: -40px;
-
-        @include media('<1350px') {
-            left: 10px;
+        &.left {
+            left: -40px;
+    
+            @include media('<1350px') {
+                left: 10px;
+            }
+        }
+    
+        &.right {
+            right: -40px;
+    
+            @include media('<1350px') {
+                right: 10px;
+            }
         }
     }
 
-    .next {
-        right: -40px;
-
-        @include media('<1350px') {
-            right: 10px;
-        }
-    }
 
     .pagination {
         display: none;
@@ -750,8 +786,8 @@
         margin-bottom: 45px;
 
         @include media('<phone') {
+            margin-bottom: 38px;
             font-size: 18px;
         }
     }
-
 }

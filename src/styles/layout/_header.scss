@@ -34,6 +34,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        max-width: 1400px;
         gap: 30px;
     }
 
@@ -43,8 +44,16 @@
         gap: 18px;
         z-index: 2;
 
+        @include media('<tablet'){
+            gap: 8px;
+        }
+
         svg {
             fill: $white;
+
+            @include media('<tablet'){
+                width: 30px;
+            }
         }
     }
 
@@ -55,6 +64,11 @@
         font-weight: $semiBold;
         text-transform: uppercase;
         margin: 13px 0 0 0;
+        
+        @include media('<tablet'){
+            font-size: 18px;
+            margin: 5px 0 0 0;
+        }
     }
 
     .menu-wrap {
@@ -140,6 +154,10 @@
             font-size: 24px;
         }
 
+        @include media('<tablet'){
+            justify-content: space-between;
+        }
+
         &:hover {
             color: $blueFF;
 
@@ -153,6 +171,10 @@
             stroke: $white;
             transition: $anim_03;
             margin-bottom: 8px;
+
+            @include media('<tablet'){
+                transform: rotate(-90deg) scale(1.4);
+            }
         }
     }
 }
