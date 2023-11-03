@@ -3,11 +3,22 @@ html {
 }
 
 body {
-    transition: $anim_03;
+
+    &.locked {
+        overflow: hidden;
+    }
 }
 
 .body_lock {
     overflow: hidden;
+}
+
+.fp-section {
+    height: 100vh;
+}
+
+.d-none {
+    display: none !important;
 }
 
 #wrapper {

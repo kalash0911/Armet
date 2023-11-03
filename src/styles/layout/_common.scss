@@ -32,6 +32,10 @@
         flex-direction: column;
         justify-content: center;
         padding: 100px 20px 200px 20px;
+
+        @include media('<phone'){
+            padding: 100px 20px;
+        }
     }
 
     .main-title {
@@ -491,7 +495,7 @@
         align-items: center;
         min-height: 550px;
 
-        @include media('<phone') {
+        @include media('<380px') {
             min-height: 450px;
         }
     }
@@ -782,8 +786,8 @@
         margin-bottom: 45px;
 
         @include media('<phone') {
+            margin-bottom: 38px;
             font-size: 18px;
         }
     }
-
 }
