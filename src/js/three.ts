@@ -47,7 +47,7 @@ export const resetObjectColor = (object: any) => {
   object.traverse((obj: any) => {
     if (obj.isMesh && obj.material.color) {
       obj.material = new THREE.MeshStandardMaterial();
-      obj.material.color.set(0xe8e8e8);
+      obj.material.color.set(0xb8b8b8);
     }
   });
 };
