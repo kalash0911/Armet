@@ -1,16 +1,13 @@
 import './swiper';
 import './lottie-icons';
+import './planet';
 import { swiper } from './swiper.ts';
 import {
   initTreeJsModels,
   setActiveElementObjectColor,
   resetActiveElementObjectColor
 } from './three';
-import { fullpagejs } from './fullpage';
 import { burgerMenu } from './burger-menu';
-
-import { isMobile } from './is-mobile';
-!isMobile && fullpagejs();
 
 burgerMenu();
 
