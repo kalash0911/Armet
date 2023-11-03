@@ -36,13 +36,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     itemCards.forEach((itemCard, index) => {
         itemCard.addEventListener('mouseenter', () => {
             if (animations[index]) {
-                animations[index].play();
+                animations?.[index]?.play();
             }
         });
 
         itemCard.addEventListener('mouseleave', () => {
             if (animations[index]) {
-                animations[index].stop();
+                animations?.[index]?.stop();
             }
         });
     });
