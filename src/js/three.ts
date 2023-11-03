@@ -66,7 +66,7 @@ export const resetActiveElementObjectColor = () => {
   }
 }
 
-const loadObj = (scene: any, objPath: string, containerEl: any) => {
+const loadObj = (scene: any, camera: any, renderer: any, objPath: string, containerEl: any) => {
   const objLoader = new OBJLoader();
   objLoader.load(
     objPath,
@@ -75,15 +75,15 @@ const loadObj = (scene: any, objPath: string, containerEl: any) => {
       scene.add(object);
       resetObjectColor(object);
       setActiveElementObjectColor();
-/*
+
       function animate() {
         requestAnimationFrame(animate);
 
         object.rotation.y -= 0.01;
 
         renderer.render(scene, camera);
-      }*/
-      // animate();
+      }
+      animate();
     },
     () => {
     },
@@ -106,7 +106,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-  loadObj(scene, modelUrl!, containerEl);
+  loadObj(scene, camera, renderer, modelUrl!, containerEl);
 
   renderer.setClearColor( 0x000000, 0 ); // the default
   renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth);
@@ -136,17 +136,6 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
 
     render();
   }
-
-
-  function animate6() {
-    requestAnimationFrame(animate6);
-
-    scene.rotation.y -= 0.01;
-
-    renderer.render(scene, camera);
-  }
-
-  animate6();
 
   animate();
 }
