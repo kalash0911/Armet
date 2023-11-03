@@ -1,8 +1,8 @@
+import './swiper';
+import './lottie-icons';
 import { swiper } from './swiper.ts';
 import {
   initTreeJsModels,
-  setActiveObjectColor,
-  resetObjectColor,
   setActiveElementObjectColor,
   resetActiveElementObjectColor
 } from './three';

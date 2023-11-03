@@ -116,7 +116,7 @@ body {
         }
     }
 
-    .icon {
+    .json-icon {
         display: grid;
         place-items: center;
         width: 86px;
@@ -124,6 +124,10 @@ body {
         border-radius: 50%;
         background-color: $blueDFF;
         margin-bottom: 30px;
+
+        svg {
+            width: 80% !important;
+        }
 
         @include media('<phone'){
             width: 68px;
