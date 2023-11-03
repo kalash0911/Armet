@@ -75,15 +75,15 @@ const loadObj = (scene: any, camera: any, renderer: any, objPath: string, contai
       scene.add(object);
       resetObjectColor(object);
       setActiveElementObjectColor();
-
+/*
       function animate() {
         requestAnimationFrame(animate);
 
         object.rotation.y -= 0.01;
 
         renderer.render(scene, camera);
-      }
-      animate();
+      }*/
+      // animate();
     },
     () => {
     },
@@ -136,6 +136,17 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
 
     render();
   }
+
+
+  function animate6() {
+    requestAnimationFrame(animate6);
+
+    scene.rotation.y -= 0.01;
+
+    renderer.render(scene, camera);
+  }
+
+  animate6();
 
   animate();
 }
