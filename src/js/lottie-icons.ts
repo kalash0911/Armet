@@ -1,13 +1,16 @@
 import lottie from 'lottie-web';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    const numberOfAnimations = 4;
 
-    const animationsData = [
-        { animationName: 'icon_1', jsonPath: '../files/icon_1.json', elementId: 'icon_1' },
-        { animationName: 'icon_2', jsonPath: '../files/icon_2.json', elementId: 'icon_2' },
-        { animationName: 'icon_3', jsonPath: '../files/icon_3.json', elementId: 'icon_3' },
-        { animationName: 'icon_4', jsonPath: '../files/icon_4.json', elementId: 'icon_4' },
-    ];
+    const animationsData = Array.from({ length: numberOfAnimations }, (_, index) => {
+        const animationNumber = index + 1;
+        return {
+            animationName: `icon_${animationNumber}`,
+            jsonPath: `../files/icon_${animationNumber}.json`,
+            elementId: `icon_${animationNumber}`
+        };
+    });
 
     const animations = animationsData.map(animationData => {
         const iconContainer = document.getElementById(animationData.elementId) as HTMLDivElement;
