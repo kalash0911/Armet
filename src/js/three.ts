@@ -104,7 +104,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   addLight(scene);
 
 
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
 
   loadObj(scene, camera, renderer, modelUrl!, containerEl);
 
