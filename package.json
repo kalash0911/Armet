@@ -22,6 +22,8 @@
     "vite-plugin-handlebars": "^1.6.0"
   },
   "dependencies": {
+    "@lottiefiles/lottie-interactivity": "^1.6.2",
+    "lottie-web": "^5.12.2",
     "swiper": "^11.0.3"
   }
 }
