@@ -94,14 +94,12 @@ export const fullpagejs = () => {
 
   window.addEventListener('onLeave', () => {
     scrollToNormalSection();
-    const scrollendcb = () => {
+    setTimeout(() => {
       unlockBody();
       sections.forEach((el) => el.classList.add('d-none'));
       window.scrollTo({ top: 0 });
       isEnded = true;
-      window.removeEventListener('scrollend', scrollendcb);
-    };
-    window.addEventListener('scrollend', scrollendcb);
+    }, 500);
   });
 
   window.addEventListener('wheel', (event) => {
