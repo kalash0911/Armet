@@ -232,7 +232,7 @@
         }
     }
 
-    $animSpeed: 10s;
+    $animSpeed: 8s;
     $animDuration: .5s;
 
     &.animation {
@@ -241,7 +241,7 @@
             animation-name: planet;
             animation-duration: $animSpeed;
             animation-delay: $animDuration;
-            animation-timing-function: ease;
+            animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
             animation-fill-mode: forwards;
 
             @include media('<tablet_s') {
@@ -269,21 +269,42 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-        } 
+        }
+
         30% {
+            top: 50%;
+            left: 101%;
+            transform: translate(-50%, -50%) rotate(-91deg);
+        }
+
+        35% {
+            top: 50%;
+            left: 99%;
+            transform: translate(-50%, -50%) rotate(-89deg);
+        }
+
+        40% {
             top: 50%;
             left: 100%;
             transform: translate(-50%, -50%) rotate(-90deg);
         }
+
         70% {
             top: 50%;
             left: 100%;
             transform: translate(-50%, -50%) rotate(-90deg);
         }
-        100% {
+
+        90% {
             top: 50%;
-            left: 0;
-            transform: translate(-50%, -50%) rotate(-270deg);
+            left: -1%;
+            transform: translate(-50%, -50%) rotate(-271deg);
+        }
+
+        95% {
+            top: 50%;
+            left: 0%;
+            transform: translate(-50%, -50%) rotate(-269deg);
         }
     }
 
@@ -292,15 +313,38 @@
             top: 30%;
             transform: translateX(-50%) scale(2);
             max-width: 410px;
-        } 
+        }
+
         30% {
+            top: 81%;
+            transform: translate(-50%, -50%) rotate(-91deg) scale(2);
+        }
+
+        35% {
+            top: 79%;
+            transform: translate(-50%, -50%) rotate(-89deg) scale(2);
+        }
+
+        40% {
             top: 80%;
             transform: translate(-50%, -50%) rotate(-90deg) scale(2);
         }
+
         70% {
             top: 80%;
             transform: translate(-50%, -50%) rotate(-90deg) scale(2);
         }
+
+        90% {
+            top: 81%;
+            transform: translate(-50%, -50%) rotate(-271deg) scale(2);
+        }
+
+        95% {
+            top: 79%;
+            transform: translate(-50%, -50%) rotate(-269deg) scale(2);
+        }
+
         100% {
             top: 80%;
             transform: translate(-50%, -50%) rotate(-270deg) scale(2);
@@ -310,16 +354,20 @@
     @keyframes opacityLeft {
         0% {
             opacity: 0;
-        } 
+        }
+
         10% {
             opacity: 0;
         }
-        20%{
+
+        20% {
             opacity: 1;
         }
+
         70% {
             opacity: 1;
         }
+
         100% {
             opacity: 0;
         }
@@ -328,10 +376,12 @@
     @keyframes opacityRight {
         0% {
             opacity: 0;
-        } 
+        }
+
         90% {
             opacity: 0;
         }
+
         100% {
             opacity: 1;
         }
