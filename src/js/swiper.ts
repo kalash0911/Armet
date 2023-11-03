@@ -8,6 +8,7 @@ export const swiper = new Swiper('.mainSlider', {
   spaceBetween: 40,
   slidesPerGroup: 1,
   centeredSlides: true,
+  allowTouchMove: false,
   loop: true,
   speed: 700,
 
