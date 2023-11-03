@@ -235,32 +235,46 @@
     $animSpeed: 8s;
     $animDuration: .5s;
 
+    .planet {
+        animation-name: planet;
+        animation-duration: $animSpeed;
+        animation-delay: $animDuration;
+        animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+
+        @include media('<tablet_s') {
+            animation-name: planetTab;
+        }
+    }
+
+    .left {
+        animation-name: opacityLeft;
+        animation-duration: $animSpeed;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+    }
+
+    .right {
+        animation-name: opacityRight;
+        animation-duration: $animSpeed;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+    }
+
     &.animation {
-
         .planet {
-            animation-name: planet;
-            animation-duration: $animSpeed;
-            animation-delay: $animDuration;
-            animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
-            animation-fill-mode: forwards;
-
-            @include media('<tablet_s') {
-                animation-name: planetTab;
-            }
+            animation-play-state: running;
         }
 
         .left {
-            animation-name: opacityLeft;
-            animation-duration: $animSpeed;
-            animation-timing-function: ease;
-            animation-fill-mode: forwards;
+            animation-play-state: running;
         }
 
         .right {
-            animation-name: opacityRight;
-            animation-duration: $animSpeed;
-            animation-timing-function: ease;
-            animation-fill-mode: forwards;
+            animation-play-state: running;
         }
     }
 
@@ -303,8 +317,14 @@
 
         95% {
             top: 50%;
-            left: 0%;
+            left: 1%;
             transform: translate(-50%, -50%) rotate(-269deg);
+        }
+
+        100% {
+            top: 50%;
+            left: 0%;
+            transform: translate(-50%, -50%) rotate(-270deg);
         }
     }
 
