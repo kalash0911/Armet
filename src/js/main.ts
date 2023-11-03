@@ -1,8 +1,6 @@
 import './swiper';
 import './lottie-icons';
-import { fullpagejs } from './fullpage';
+import './planet';
 import { burgerMenu } from './burger-menu';
-import { isMobile } from './is-mobile';
 
-!isMobile && fullpagejs();
 burgerMenu();
