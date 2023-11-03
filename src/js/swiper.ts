@@ -2,7 +2,8 @@ import Swiper from 'swiper';
 import 'swiper/css';
 import { Navigation, Pagination } from 'swiper/modules';
 
-new Swiper('.mainSlider', {
+export const swiper = new Swiper('.mainSlider', {
+  init: false,
   slidesPerView: 3,
   spaceBetween: 40,
   slidesPerGroup: 1,
