@@ -1,5 +1,7 @@
 import * as THREE from 'three';
+// @ts-ignore
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// @ts-ignore
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 const createScene = () => {
@@ -7,7 +9,7 @@ const createScene = () => {
   return scene;
 }
 
-const addLight = (scene) => {
+const addLight = (scene: any) => {
   const light = new THREE.PointLight(0xffffff, 1000);
   light.position.set(2.5, 7.5, 15);
   scene.add(light);
@@ -24,22 +26,22 @@ const setCamera = () => {
   return camera;
 }
 
-const setControls = (camera, renderer) => {
+const setControls = (camera: any, renderer: any) => {
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   return controls;
 }
 
-export const setActiveObjectColor = (object) => {
-  object.traverse( function (obj) {
+export const setActiveObjectColor = (object: any) => {
+  object.traverse( (obj: any) => {
     if (obj.isMesh && obj.material.color){
       obj.material.color.set(0x2293FF);
     }
   } );
 }
 
-export const resetObjectColor = (object) => {
-  object.traverse( function (obj) {
+export const resetObjectColor = (object: any) => {
+  object.traverse((obj: any) => {
     if (obj.isMesh && obj.material.color){
       obj.material.color.set(0xe8e8e8);
     }
@@ -48,31 +50,35 @@ export const resetObjectColor = (object) => {
 
 export const setActiveElementObjectColor = () => {
   const activeEl = document.querySelector('.swiper-slide-active .test-item');
+  // @ts-ignore
   if (activeEl && activeEl._loadedModelObject ) {
+    // @ts-ignore
     setActiveObjectColor(activeEl._loadedModelObject);
   }
 }
 
 export const resetActiveElementObjectColor = () => {
   const activeEl = document.querySelector('.swiper-slide-active .test-item');
+  // @ts-ignore
   if (activeEl && activeEl._loadedModelObject ) {
+    // @ts-ignore
     resetObjectColor(activeEl._loadedModelObject);
   }
 }
 
-const loadObj = (scene, objPath: string, containerEl) => {
+const loadObj = (scene: any, objPath: string, containerEl: any) => {
   const objLoader = new OBJLoader();
   objLoader.load(
     objPath,
-    (object) => {
+    (object: any) => {
       containerEl._loadedModelObject = object;
       scene.add(object);
       resetObjectColor(object);
       setActiveElementObjectColor();
     },
-    (xhr) => {
+    () => {
     },
-    (error) => {
+    (error: any) => {
       console.log(error)
     }
   );
@@ -83,6 +89,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   const modelUrl = containerEl.dataset.modelurl;
 
   const scene = createScene();
+  // @ts-ignore
   scene.background = '#F9F9F9';
   const camera = setCamera();
   addLight(scene);

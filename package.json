@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .ts"
   },
   "devDependencies": {
+    "@types/three": "^0.158.1",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
     "@typescript-eslint/parser": "^6.9.1",
     "eslint": "^8.52.0",
