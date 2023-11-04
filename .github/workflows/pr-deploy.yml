@@ -1,35 +1,26 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: PR Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ['main']
-
   pull_request:
     branches:
       - '*'
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  # Single deploy job for pull requests
+  deploy-pr:
+    if: github.event_name == 'pull_request'
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: pr-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -48,8 +39,10 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload dist repository
           path: './dist'
+      - name: Determine PR Branch
+        id: pr-branch
+        run: echo ::set-output name=branch::${GITHUB_REF/refs\/pull\//}
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: pr-deployment
         uses: actions/deploy-pages@v1
