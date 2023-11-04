@@ -22,7 +22,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' ? steps.deployment.outputs.page_url : steps.deployment.outputs.page_url + '/' + github.event.pull_request.head.ref }}
+      url: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.deployment.outputs.page_url || steps.deployment.outputs.page_url + '/' + github.event.pull_request.head.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
