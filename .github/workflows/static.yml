@@ -1,28 +1,27 @@
+---
 name: Deploy static content to Pages
-
 on:
   push:
     branches:
-      - 'main'
+      - main
   pull_request:
     branches:
       - '*'
-  workflow_dispatch:
-
+  workflow_dispatch: null
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
-  group: 'pages'
+  group: pages
   cancel-in-progress: true
-
 jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.deployment.outputs.page_url || steps.deployment.outputs.page_url + '/' + github.event.pull_request.head.ref }}
+      url: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+        steps.deployment.outputs.page_url || steps.deployment.outputs.page_url +
+        '/' + github.event.pull_request.head.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +30,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+          cache: npm
       - name: Install dependencies
         run: npm install
       - name: Build
@@ -41,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './dist'
+          path: ./dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
