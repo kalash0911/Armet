@@ -19,9 +19,6 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' &&
-        steps.deployment.outputs.page_url || steps.deployment.outputs.page_url +
-        '/' + github.event.pull_request.head.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,6 +38,19 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./dist
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Determine Deployment URL
+        id: url
+        run: >
+          if [ "$GITHUB_EVENT_NAME" == "push" ] && [ "$GITHUB_REF" ==
+          "refs/heads/main" ]; then
+            DEPLOY_URL="${{ steps.deployment.outputs.page_url }}"
+          else
+            PR_BRANCH="${{ github.event.pull_request.head.ref }}"
+            DEPLOY_URL="${{ steps.deployment.outputs.page_url }}/$PR_BRANCH"
+          fi
+
+          echo "Deployment URL: $DEPLOY_URL"
+
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
