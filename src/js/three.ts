@@ -1,10 +1,13 @@
 import * as THREE from 'three';
-// @ts-ignore
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-// @ts-ignore
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-// @ts-ignore
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
+
+const DEFAULT_OBJECT_COLOR = 0xb8b8b8;
+const ACTIVE_OBJECT_COLOR = 0x2293ff;
+
+const MODEL_CONTAINER_CLASS_NAME = 'threejs-model-container';
+const ACTIVE_CONTAINER_CLASS_NAME = 'swiper-slide-active';
 
 const objList: any[] = [];
 
@@ -30,19 +33,30 @@ const setCamera = () => {
   return camera;
 };
 
+const getMaterial = (color: string | number) => {
+  const material = new THREE.MeshStandardMaterial();
+  material.color.set(color);
+  material.roughness = 0.25;
+  // @ts-ignore
+  material.specular = 0.6;
+  return material;
+};
+
 const setControls = (camera: any, renderer: any) => {
   const controls = new OrbitControls(camera, renderer.domElement);
+
   controls.enableDamping = true;
+  controls.enableZoom = false;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed *= -2;
+
   return controls;
 };
 
 export const setActiveObjectColor = (object: any) => {
   object.traverse((obj: any) => {
     if (obj.isMesh && obj.material.color) {
-      obj.material = new THREE.MeshStandardMaterial();
-      obj.material.color.set(0x2293ff);
-      obj.material.roughness = 0.25;
-      obj.material.specular = 0.6;
+      obj.material = getMaterial(ACTIVE_OBJECT_COLOR);
     }
   });
 };
@@ -50,16 +64,17 @@ export const setActiveObjectColor = (object: any) => {
 export const resetObjectColor = (object: any) => {
   object.traverse((obj: any) => {
     if (obj.isMesh && obj.material.color) {
-      obj.material = new THREE.MeshStandardMaterial();
-      obj.material.color.set(0xb8b8b8);
-      obj.material.roughness = 0.25;
-      obj.material.specular = 0.6;
+      obj.material = getMaterial(DEFAULT_OBJECT_COLOR);
     }
   });
 };
 
+const getActiveElement = (): Element | null => {
+  return document.querySelector(`.${ACTIVE_CONTAINER_CLASS_NAME} .${MODEL_CONTAINER_CLASS_NAME}`);
+}
+
 export const setActiveElementObjectColor = () => {
-  const activeEl = document.querySelector('.swiper-slide-active .test-item');
+  const activeEl = getActiveElement();
   // @ts-ignore
   if (activeEl && activeEl._loadedModelObject) {
     // @ts-ignore
@@ -68,7 +83,7 @@ export const setActiveElementObjectColor = () => {
 };
 
 export const resetActiveElementObjectColor = () => {
-  const activeEl = document.querySelector('.swiper-slide-active .test-item');
+  const activeEl = getActiveElement();
   // @ts-ignore
   if (activeEl && activeEl._loadedModelObject) {
     // @ts-ignore
@@ -78,8 +93,6 @@ export const resetActiveElementObjectColor = () => {
 
 const loadObj = (
   scene: any,
-  camera: any,
-  renderer: any,
   objPath: string,
   containerEl: any,
 ) => {
@@ -97,15 +110,6 @@ const loadObj = (
           objList.push(obj);
         }
       });
-
-      function animate() {
-        requestAnimationFrame(animate);
-
-        object.rotation.y -= 0.01;
-
-        renderer.render(scene, camera);
-      }
-      animate();
     },
     () => {},
     (error: any) => {
@@ -142,7 +146,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-  loadObj(scene, camera, renderer, modelUrl!, containerEl);
+  loadObj(scene, modelUrl!, containerEl);
 
   renderer.setClearColor(0x000000, 0); // the default
   renderer.setPixelRatio(window.devicePixelRatio * 2);
@@ -150,7 +154,6 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   containerEl.appendChild(renderer.domElement);
 
   const controls = setControls(camera, renderer);
-  controls.enableZoom = false;
 
   window.addEventListener('resize', onWindowResize, false);
   new ResizeObserver(onWindowResize).observe(containerEl);
@@ -178,7 +181,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
 };
 
 export const initTreeJsModels = () => {
-  const items = document.getElementsByClassName('test-item');
+  const items = document.getElementsByClassName(MODEL_CONTAINER_CLASS_NAME);
   [...items].forEach((item: Element) => {
     renderModel({
       containerEl: item as HTMLElement,
