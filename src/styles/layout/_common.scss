@@ -33,7 +33,7 @@
         justify-content: center;
         padding: 100px 20px 200px 20px;
 
-        @include media('<phone'){
+        @include media('<phone') {
             padding: 100px 20px;
         }
     }
@@ -236,7 +236,7 @@
         }
     }
 
-    $animSpeed: 8s;
+    $animSpeed: 12s;
     $animDuration: .5s;
 
     .planet {
@@ -246,6 +246,7 @@
         animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
         animation-fill-mode: forwards;
         animation-play-state: paused;
+        animation-iteration-count: infinite;
 
         @include media('<tablet_s') {
             animation-name: planetTab;
@@ -258,6 +259,7 @@
         animation-timing-function: ease;
         animation-fill-mode: forwards;
         animation-play-state: paused;
+        animation-iteration-count: infinite;
     }
 
     .right {
@@ -266,6 +268,7 @@
         animation-timing-function: ease;
         animation-fill-mode: forwards;
         animation-play-state: paused;
+        animation-iteration-count: infinite;
     }
 
     &.animation {
@@ -289,16 +292,22 @@
             transform: translateX(-50%);
         }
 
-        30% {
+        15% {
             top: 50%;
             left: 101%;
             transform: translate(-50%, -50%) rotate(-91deg);
         }
 
-        35% {
+        20% {
             top: 50%;
             left: 99%;
             transform: translate(-50%, -50%) rotate(-89deg);
+        }
+
+        25% {
+            top: 50%;
+            left: 100%;
+            transform: translate(-50%, -50%) rotate(-90deg);
         }
 
         40% {
@@ -307,28 +316,34 @@
             transform: translate(-50%, -50%) rotate(-90deg);
         }
 
-        70% {
-            top: 50%;
-            left: 100%;
-            transform: translate(-50%, -50%) rotate(-90deg);
-        }
-
-        90% {
+        60% {
             top: 50%;
             left: -1%;
             transform: translate(-50%, -50%) rotate(-271deg);
         }
 
-        95% {
+        65% {
             top: 50%;
             left: 1%;
             transform: translate(-50%, -50%) rotate(-269deg);
         }
 
-        100% {
+        70% {
             top: 50%;
             left: 0%;
             transform: translate(-50%, -50%) rotate(-270deg);
+        }
+
+        90% {
+            top: 50%;
+            left: 0%;
+            transform: translate(-50%, -50%) rotate(-270deg);
+        }
+
+        100% {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(-360deg);
         }
     }
 
@@ -388,8 +403,12 @@
             opacity: 1;
         }
 
-        70% {
+        55% {
             opacity: 1;
+        }
+
+        60% {
+            opacity: 0;
         }
 
         100% {
@@ -402,12 +421,20 @@
             opacity: 0;
         }
 
-        90% {
+        55% {
             opacity: 0;
         }
 
-        100% {
+        60% {
             opacity: 1;
+        }
+
+        95% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
         }
     }
 
@@ -576,15 +603,15 @@
 
         &.left {
             left: -40px;
-    
+
             @include media('<1350px') {
                 left: 10px;
             }
         }
-    
+
         &.right {
             right: -40px;
-    
+
             @include media('<1350px') {
                 right: 10px;
             }
