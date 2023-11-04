@@ -145,7 +145,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   loadObj(scene, camera, renderer, modelUrl!, containerEl);
 
   renderer.setClearColor(0x000000, 0); // the default
-  renderer.setPixelRatio(window.devicePixelRatio * 4);
+  renderer.setPixelRatio(window.devicePixelRatio * 2);
   renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth, true);
   containerEl.appendChild(renderer.domElement);
 
