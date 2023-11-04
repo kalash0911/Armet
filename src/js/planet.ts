@@ -1,4 +1,4 @@
-const section = document.querySelector('#planet');
+const section = document.querySelector('#planet_');
 
 const options: IntersectionObserverInit = {
   root: null,

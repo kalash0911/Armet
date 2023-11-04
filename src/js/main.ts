@@ -8,6 +8,7 @@ import {
   resetActiveElementObjectColor,
 } from './three';
 import { burgerMenu } from './burger-menu';
+import './gsap.ts';
 
 burgerMenu();
 

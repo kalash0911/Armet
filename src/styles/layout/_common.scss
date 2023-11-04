@@ -163,7 +163,7 @@
         transform: translateX(-50%);
         top: 0;
         z-index: 1;
-        transition: all 2s ease-out 0s;
+        // transition: all 2s ease-out 0s;
 
         @include media('<tablet_s') {
             transform: translateX(-50%) scale(2);
@@ -173,7 +173,7 @@
 
         @include media('<phone') {
             max-width: 100%;
-            transition: all 1s ease-out 0s;
+            // transition: all 1s ease-out 0s;
         }
     }
 
@@ -184,7 +184,7 @@
     .text-box {
         max-width: 550px;
         opacity: 0;
-        transition: opacity .7s ease 1s;
+        // transition: opacity .7s ease 1s;
 
         @include media('<desktop') {
             max-width: 450px;
@@ -240,7 +240,7 @@
     $animDuration: .5s;
 
     .planet {
-        animation-name: planet;
+        // animation-name: planet;
         animation-duration: $animSpeed;
         animation-delay: $animDuration;
         animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
@@ -254,7 +254,7 @@
     }
 
     .left {
-        animation-name: opacityLeft;
+        // animation-name: opacityLeft;
         animation-duration: $animSpeed;
         animation-timing-function: ease;
         animation-fill-mode: forwards;
@@ -263,7 +263,7 @@
     }
 
     .right {
-        animation-name: opacityRight;
+        // animation-name: opacityRight;
         animation-duration: $animSpeed;
         animation-timing-function: ease;
         animation-fill-mode: forwards;
