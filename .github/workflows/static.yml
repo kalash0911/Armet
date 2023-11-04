@@ -16,43 +16,65 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  deploy:
+  deploy-main:
     environment:
-      name: github-pages
+      name: main-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 16
           cache: npm
       - name: Install dependencies
         run: npm install
       - name: Build
         run: npm run build
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v2
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
+          name: main-dist
           path: ./dist
-      - name: Determine Deployment URL
-        id: url
-        run: >
-          if [ "$GITHUB_EVENT_NAME" == "push" ] && [ "$GITHUB_REF" ==
-          "refs/heads/main" ]; then
-            DEPLOY_URL="${{ steps.deployment.outputs.page_url }}"
-          else
-            PR_BRANCH="${{ github.event.pull_request.head.ref }}"
-            DEPLOY_URL="${{ steps.deployment.outputs.page_url }}/$PR_BRANCH"
-          fi
-
-          echo "Deployment URL: $DEPLOY_URL"
-
-          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        id: main-deployment
+        uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact: main-dist
+  deploy-pr:
+    environment:
+      name: pr-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pr-dist
+          path: ./dist
+      - name: Determine PR Branch
+        id: pr-branch
+        run: echo ::set-output name=branch::${GITHUB_REF/refs\/pull\//}
+      - name: Deploy to GitHub Pages
+        id: pr-deployment
+        uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact: pr-dist
+          target_branch: ${{ steps.pr-branch.outputs.branch }}
