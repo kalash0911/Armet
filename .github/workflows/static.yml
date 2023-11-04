@@ -1,28 +1,24 @@
+---
 name: Deploy static content to Pages
-
 on:
   push:
     branches:
-      - 'main'
+      - main
   pull_request:
     branches:
       - '*'
-  workflow_dispatch:
-
+  workflow_dispatch: null
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
-  group: 'pages'
+  group: pages
   cancel-in-progress: true
-
 jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' ? steps.deployment.outputs.page_url : steps.deployment.outputs.page_url + '/' + github.event.pull_request.head.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +27,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+          cache: npm
       - name: Install dependencies
         run: npm install
       - name: Build
@@ -41,7 +37,20 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './dist'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          path: ./dist
+      - name: Determine Deployment URL
+        id: url
+        run: >
+          if [ "$GITHUB_EVENT_NAME" == "push" ] && [ "$GITHUB_REF" ==
+          "refs/heads/main" ]; then
+            DEPLOY_URL="${{ steps.deployment.outputs.page_url }}"
+          else
+            PR_BRANCH="${{ github.event.pull_request.head.ref }}"
+            DEPLOY_URL="${{ steps.deployment.outputs.page_url }}/$PR_BRANCH"
+          fi
+
+          echo "Deployment URL: $DEPLOY_URL"
+
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
