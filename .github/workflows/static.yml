@@ -7,8 +7,7 @@ on:
   pull_request:
     branches:
       - '*'
-
-workflow_dispatch:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -28,8 +27,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
@@ -42,13 +39,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: dist
-          path: ./dist
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          artifact: dist
+        uses: actions/deploy-pages@v1
