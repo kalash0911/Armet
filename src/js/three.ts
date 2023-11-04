@@ -145,7 +145,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   loadObj(scene, camera, renderer, modelUrl!, containerEl);
 
   renderer.setClearColor(0x000000, 0); // the default
-  renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth);
+  renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth, true);
   containerEl.appendChild(renderer.domElement);
 
   const controls = setControls(camera, renderer);
@@ -161,7 +161,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   function onWindowResize() {
     camera.aspect = containerEl.offsetWidth / containerEl.offsetWidth;
     camera.updateProjectionMatrix();
-    renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth);
+    renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth, true);
     render();
   }
 
