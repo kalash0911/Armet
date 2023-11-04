@@ -43,7 +43,6 @@ jobs:
         id: main-deployment
         uses: actions/deploy-pages@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           artifact: main-dist
   deploy-pr:
     environment:
@@ -75,6 +74,5 @@ jobs:
         id: pr-deployment
         uses: actions/deploy-pages@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           artifact: pr-dist
           target_branch: ${{ steps.pr-branch.outputs.branch }}
