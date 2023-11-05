@@ -239,14 +239,19 @@
     $animSpeed: 12s;
     $animDuration: .5s;
 
-    .planet {
-        animation-name: planet;
+    .planet,
+    .left,
+    .right {
         animation-duration: $animSpeed;
         animation-delay: $animDuration;
-        animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
         animation-fill-mode: forwards;
         animation-play-state: paused;
         animation-iteration-count: infinite;
+    }
+
+    .planet {
+        animation-name: planet;
+        animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
 
         @include media('<tablet_s') {
             animation-name: planetTab;
@@ -255,23 +260,16 @@
 
     .left {
         animation-name: opacityLeft;
-        animation-duration: $animSpeed;
         animation-timing-function: ease;
-        animation-fill-mode: forwards;
-        animation-play-state: paused;
-        animation-iteration-count: infinite;
     }
 
     .right {
         animation-name: opacityRight;
-        animation-duration: $animSpeed;
         animation-timing-function: ease;
-        animation-fill-mode: forwards;
-        animation-play-state: paused;
-        animation-iteration-count: infinite;
     }
 
     &.animation {
+
         .planet {
             animation-play-state: running;
         }
@@ -351,17 +349,21 @@
         0% {
             top: 30%;
             transform: translateX(-50%) scale(2);
-            max-width: 410px;
         }
 
-        30% {
+        15% {
             top: 81%;
             transform: translate(-50%, -50%) rotate(-91deg) scale(2);
         }
 
-        35% {
+        20% {
             top: 79%;
             transform: translate(-50%, -50%) rotate(-89deg) scale(2);
+        }
+
+        25% {
+            top: 80%;
+            transform: translate(-50%, -50%) rotate(-90deg) scale(2);
         }
 
         40% {
@@ -369,24 +371,29 @@
             transform: translate(-50%, -50%) rotate(-90deg) scale(2);
         }
 
-        70% {
-            top: 80%;
-            transform: translate(-50%, -50%) rotate(-90deg) scale(2);
-        }
-
-        90% {
+        60% {
             top: 81%;
             transform: translate(-50%, -50%) rotate(-271deg) scale(2);
         }
 
-        95% {
+        65% {
             top: 79%;
             transform: translate(-50%, -50%) rotate(-269deg) scale(2);
         }
 
-        100% {
+        70% {
             top: 80%;
             transform: translate(-50%, -50%) rotate(-270deg) scale(2);
+        }
+
+        90% {
+            top: 80%;
+            transform: translate(-50%, -50%) rotate(-270deg) scale(2);
+        }
+
+        100% {
+            top: 30%;
+            transform: translateX(-50%) scale(2);
         }
     }
 
@@ -437,8 +444,6 @@
             opacity: 0;
         }
     }
-
-
 }
 
 /* ------------------------bestsellers-section--------------- */
