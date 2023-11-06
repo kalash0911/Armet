@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
+import { isMobile } from './is-mobile.ts';
 
 const DEFAULT_OBJECT_COLOR = 0xb8b8b8;
 const ACTIVE_OBJECT_COLOR = 0x2293ff;
@@ -10,6 +11,12 @@ const MODEL_CONTAINER_CLASS_NAME = 'threejs-model-container';
 const ACTIVE_CONTAINER_CLASS_NAME = 'swiper-slide-active';
 
 const objList: any[] = [];
+
+const getModelsQualityPixelRatio = (resolution: number) : number => {
+  return isMobile
+    ? resolution / 2
+    : resolution * 2;
+};
 
 const createScene = () => {
   const scene = new THREE.Scene();
@@ -149,7 +156,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   loadObj(scene, modelUrl!, containerEl);
 
   renderer.setClearColor(0x000000, 0); // the default
-  renderer.setPixelRatio(window.devicePixelRatio / 3);
+  renderer.setPixelRatio(getModelsQualityPixelRatio(window.devicePixelRatio));
   renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth, true);
   containerEl.appendChild(renderer.domElement);
 
