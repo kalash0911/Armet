@@ -11,7 +11,6 @@ const ACTIVE_CONTAINER_CLASS_NAME = 'swiper-slide-active';
 
 const objList: any[] = [];
 
-
 const createScene = () => {
   const scene = new THREE.Scene();
   return scene;
@@ -150,7 +149,7 @@ const renderModel = (props: { containerEl: HTMLElement }) => {
   loadObj(scene, modelUrl!, containerEl);
 
   renderer.setClearColor(0x000000, 0); // the default
-  renderer.setPixelRatio(window.devicePixelRatio / 2);
+  renderer.setPixelRatio(window.devicePixelRatio / 3);
   renderer.setSize(containerEl.offsetWidth, containerEl.offsetWidth, true);
   containerEl.appendChild(renderer.domElement);
 
