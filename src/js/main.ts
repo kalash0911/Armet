@@ -2,16 +2,16 @@ import './swiper';
 import './lottie-icons';
 import './planet';
 import { swiper } from './swiper.ts';
-/* import {
+import {
   initTreeJsModels,
   setActiveElementObjectColor,
   resetActiveElementObjectColor,
-} from './three'; */
+} from './three';
 import { burgerMenu } from './burger-menu';
 
 burgerMenu();
 
-/* swiper.on('init', () => {
+swiper.on('init', () => {
   initTreeJsModels();
 });
 
@@ -21,6 +21,6 @@ swiper.on('slideChange', () => {
 
 swiper.on('slideChangeTransitionStart', () => {
   setActiveElementObjectColor();
-}); */
+});
 
 swiper.init();
