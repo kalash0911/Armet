@@ -166,9 +166,9 @@
         transition: all 2s ease-out 0s;
 
         @include media('<tablet_s') {
-            transform: translateX(-50%) scale(2);
-            top: 30%;
-            max-width: 410px;
+            top: 0;
+            transform: translateX(-50%);
+            min-width: 1000px;
         }
 
         @include media('<phone') {
@@ -237,21 +237,21 @@
     }
 
     $animSpeed: 12s;
-    $animDuration: .5s;
+    $animDelay: .5s;
 
     .planet,
     .left,
     .right {
         animation-duration: $animSpeed;
-        animation-delay: $animDuration;
+        animation-delay: $animDelay;
         animation-fill-mode: forwards;
         animation-play-state: paused;
+        animation-timing-function: ease;
         animation-iteration-count: infinite;
     }
 
     .planet {
         animation-name: planet;
-        animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
 
         @include media('<tablet_s') {
             animation-name: planetTab;
@@ -260,12 +260,18 @@
 
     .left {
         animation-name: opacityLeft;
-        animation-timing-function: ease;
+
+        @include media('<tablet_s') {
+            animation-delay: 0s;
+        }
     }
 
     .right {
         animation-name: opacityRight;
-        animation-timing-function: ease;
+
+        @include media('<tablet_s') {
+            animation-delay: 0s;
+        }
     }
 
     &.animation {
@@ -347,53 +353,63 @@
 
     @keyframes planetTab {
         0% {
-            top: 30%;
-            transform: translateX(-50%) scale(2);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         15% {
-            top: 81%;
-            transform: translate(-50%, -50%) rotate(-91deg) scale(2);
+            top: 100%;
+            left: 101%;
+            transform: translate(-50%, -50%) rotate(-91deg);
         }
 
         20% {
-            top: 79%;
-            transform: translate(-50%, -50%) rotate(-89deg) scale(2);
+            top: 100%;
+            left: 99%;
+            transform: translate(-50%, -50%) rotate(-89deg);
         }
 
         25% {
-            top: 80%;
-            transform: translate(-50%, -50%) rotate(-90deg) scale(2);
+            top: 100%;
+            left: 100%;
+            transform: translate(-50%, -50%) rotate(-90deg);
         }
 
         40% {
-            top: 80%;
-            transform: translate(-50%, -50%) rotate(-90deg) scale(2);
+            top: 100%;
+            left: 100%;
+            transform: translate(-50%, -50%) rotate(-90deg);
         }
 
         60% {
-            top: 81%;
-            transform: translate(-50%, -50%) rotate(-271deg) scale(2);
+            top: 100%;
+            left: -1%;
+            transform: translate(-50%, -50%) rotate(-271deg);
         }
 
         65% {
-            top: 79%;
-            transform: translate(-50%, -50%) rotate(-269deg) scale(2);
+            top: 100%;
+            left: 1%;
+            transform: translate(-50%, -50%) rotate(-269deg);
         }
 
         70% {
-            top: 80%;
-            transform: translate(-50%, -50%) rotate(-270deg) scale(2);
+            top: 100%;
+            left: 0%;
+            transform: translate(-50%, -50%) rotate(-270deg);
         }
 
         90% {
-            top: 80%;
-            transform: translate(-50%, -50%) rotate(-270deg) scale(2);
+            top: 100%;
+            left: 0%;
+            transform: translate(-50%, -50%) rotate(-270deg);
         }
 
         100% {
-            top: 30%;
-            transform: translateX(-50%) scale(2);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(-360deg);
         }
     }
 
