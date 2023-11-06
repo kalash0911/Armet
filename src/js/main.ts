@@ -1,4 +1,3 @@
-import './swiper';
 import './lottie-icons';
 import './planet';
 import { swiper } from './swiper.ts';
